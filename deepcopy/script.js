@@ -35,15 +35,6 @@ function deepCopy(obj) {
     
     
     } else {
-    if(typeof(obj)==="string"){
-        clObj = "";
-    let i=0;
-    for (let v of obj) {
-    clObj[i] = v;
-    i++;
-    
-    }
-    }
     clObj = obj;
     }
     return clObj;
