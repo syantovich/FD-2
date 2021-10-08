@@ -32,3 +32,19 @@ function buildWrapper (tag){
     };
     return x;
 }
+function test(){
+    var wrapP=buildWrapper("P");   // строим функцию для оборачивания текста в тег P
+  console.log( wrapP("Однажды в студёную зимнюю пору") );
+  console.log("Должно быть <P>Однажды в студёную зимнюю пору</P>");
+  console.log("---------------------------------------------");
+  console.log( wrapP("Однажды в студёную зимнюю пору",{lang:"ru"}) );
+  console.log("Должно быть <P lang='ru'>Однажды в студёную зимнюю пору</P>");
+  console.log("---------------------------------------------");
+  console.log( wrapP("Однажды в <студёную> зимнюю пору") );
+  console.log("Должно быть <P>Однажды в &lt;студёную&gt; зимнюю пору</P>");
+  console.log("---------------------------------------------");
+  var wrapH1=buildWrapper("H1"); // строим функцию для оборачивания текста в тег H1
+  console.log( wrapH1("СТИХИ",{align:"center",title:"M&M's"}) );
+  console.log("Должно быть <H1 align='center' title='M&amp;M&apos;s'>СТИХИ</H1>");
+  console.log("---------------------------------------------");
+}
