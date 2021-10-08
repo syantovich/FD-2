@@ -19,13 +19,7 @@ function buildWrapper (tag){
         let newAtr = "";
         text = mn(text);
         for(key in atr){
-            let nameAtr = key;
-            for(let v of nameAtr){
-                if(v===v.toUpperCase()){
-                    nameAtr=nameAtr.split(`${v}`).join(`-${v.toLowerCase()}`);
-                }
-            }
-            newAtr += ` ${nameAtr}='${mn(atr[key])}'` ;
+            newAtr += ` ${key}='${mn(atr[key])}'` ;
         }
         let newString = `<${tag}${newAtr}>${text}</${tag}>`;
         return newString;
