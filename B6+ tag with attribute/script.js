@@ -38,7 +38,7 @@ function test(){
   console.log("<P>Однажды в &lt;студёную&gt; зимнюю пору</P> Должно быть");
   console.log("---------------------------------------------");
   var wrapH1=buildWrapper("H1"); // строим функцию для оборачивания текста в тег H1
-  console.log( wrapH1("СТИХИ",{align:"center",title:"M&M's"}) );
+  console.log( wrapH1("СТИХИ",{"align":"center",title:"M&M's"}) );
   console.log("<H1 align='center' title='M&amp;M&apos;s'>СТИХИ</H1> Должно быть");
   console.log("---------------------------------------------");
 }
