@@ -10,8 +10,8 @@ function deepComp(obj1, obj2) {
     if (Number.isNaN(obj1) && Number.isNaN(obj2)) {
         return true;
     }
-    if (typeof obj1 === "string" && obj1 !== obj2) {
-        return false;
+    if (typeof obj1 !== "object") {
+        return obj1===obj2;
     }
 
     if(Array.isArray(obj1) !== Array.isArray(obj2)){return false;}
@@ -22,16 +22,6 @@ function deepComp(obj1, obj2) {
                     if (deepComp(obj1[i], obj2[i]) === false) {
                         return false;
                     }
-                    if (typeof obj1[i] !== typeof obj2[i]) {
-                        return false;
-                    }else{
-                    if(obj1[i]!==obj2[i]){
-                        if(Number.isNaN(obj1[i])&&Number.isNaN(obj2[i])){
-                            continue;
-                        }
-                        if(typeof obj1[i]=="object"){continue;}
-                        return false;
-                    }}
                 }
             
         } else {
@@ -41,26 +31,10 @@ function deepComp(obj1, obj2) {
                 if (!(key in obj2)) {
                     return false;
                 }
-                if ((obj2[key] === obj1[key]) === false) {
-                    if (obj2[key] === undefined) {
-                        return false;
-                    }
-                }
                     if (deepComp(obj1[key], obj2[key]) === false) {
                         return false;
                     }
-                if (typeof obj1[key] !== typeof obj2[key]) {
-                    return false;
-                }
-                else{
-                    if(obj1[key]!==obj2[key]){
-                        if(Number.isNaN(obj1[key])&&Number.isNaN(obj2[key])){
-                            continue;
-                        }
-                        if(typeof obj1[key]=="object"){continue;}
-                        return false;
-                    }
-                }
+
 
 
             }

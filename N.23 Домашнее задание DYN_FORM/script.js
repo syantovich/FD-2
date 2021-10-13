@@ -48,11 +48,11 @@ function createForm(nameForm){
                     var newRadio=document.createElement("input");
                     var newText=document.createElement("label");
                     newText.innerHTML=`${v.variants[r].text}`;
-                    newText.for=`${v.name}`;
+                    newText.for=v.name;
                     newRadio.type="radio";
-                    newRadio.name=`${v.name}`;
-                    newRadio.id=`${v.name}`;
-                    newRadio.value=`${v.variants[r].value}`;
+                    newRadio.name=v.name;
+                    newRadio.id=v.name;
+                    newRadio.value=v.variants[r].value;
                     newDiv.append(newRadio);
                     newDiv.append(newText);
                     
@@ -61,11 +61,11 @@ function createForm(nameForm){
             case "combo":
                 var newSelect=document.createElement("select");
                 newSelect.setAttribute("name",`${v.name}`);
-                newSelect.id=`${v.name}`;
+                newSelect.id=v.name;
                 for(let r=0;r<v.variants.length;r++){
                     var newOptions=document.createElement("option");
                     newOptions.setAttribute("value",`${v.variants[r].value}`);
-                    newOptions.innerText=`${v.variants[r].text}`;
+                    newOptions.innerText=v.variants[r].text;
                     newSelect.append(newOptions);
                 }
                 newDiv.append(newSelect);
@@ -82,7 +82,7 @@ function createForm(nameForm){
             break;
             case "submit":
                 var newSubmit=document.createElement("input");
-                newSubmit.value=`${v.label}`;
+                newSubmit.value=v.label;
                 newSubmit.type="submit";
                 formTag.append(newSubmit);
             break;
