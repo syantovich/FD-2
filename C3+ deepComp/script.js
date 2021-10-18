@@ -15,7 +15,7 @@ function deepComp(obj1, obj2) {
     }
 
     if(Array.isArray(obj1) !== Array.isArray(obj2)){return false;}
-    if (obj1 instanceof Object && obj2 instanceof Object) {
+    if (obj1 instanceof Object) {
         if (Array.isArray(obj1)) {
             if(obj1.length !== obj2.length){return false;}
             for (let i = 0; obj1.length; i++) {

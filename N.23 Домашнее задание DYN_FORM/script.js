@@ -34,7 +34,7 @@ function createForm(nameForm){
         let v=nameForm[i];
         if (v.label){
             newLabel.innerHTML=v.label;
-            newLabel.setAttribute("for",`${v.name}`);   
+            newLabel.setAttribute("for",v.name);   
             if (v.kind!="submit"){
                             newDiv.appendChild(newLabel);
             }
@@ -47,7 +47,7 @@ function createForm(nameForm){
                 for(let r=0;r<v.variants.length;r++){
                     var newRadio=document.createElement("input");
                     var newText=document.createElement("label");
-                    newText.innerHTML=`${v.variants[r].text}`;
+                    newText.innerHTML=v.variants[r].text;
                     newText.for=v.name;
                     newRadio.type="radio";
                     newRadio.name=v.name;
@@ -60,11 +60,11 @@ function createForm(nameForm){
             break;
             case "combo":
                 var newSelect=document.createElement("select");
-                newSelect.setAttribute("name",`${v.name}`);
+                newSelect.setAttribute("name",v.name);
                 newSelect.id=v.name;
                 for(let r=0;r<v.variants.length;r++){
                     var newOptions=document.createElement("option");
-                    newOptions.setAttribute("value",`${v.variants[r].value}`);
+                    newOptions.setAttribute("value",v.variants[r].value);
                     newOptions.innerText=v.variants[r].text;
                     newSelect.append(newOptions);
                 }
