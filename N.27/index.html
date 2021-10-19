@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <form action="https://fe.it-academy.by/TestForm.php">
+        <label for="sitename">Название сайта: 
+            <input type="text" name="sitename" id="sitename" class="text">
+            <span></span>
+        </label>
+        <br>
+        <label for="siteurl">URL сайта: 
+            <input type="text" name="siteurl" id="siteurl" class="text">
+            <span></span>
+        </label>
+        <br>
+        <label for="visitors">Посетителей в сутки: 
+            <input type="number" name="visitors" id="visitors" class="text">
+            <span></span>
+        </label>
+        <br>
+        <label for="email">E-mail для связи: 
+            <input type="text" name="email" id="email" class="text">
+            <span></span>
+        </label>
+        <br>
+        <label for="division">Рубрика каталога: 
+            <select name="division" id="division" class="sel">
+                <option value="1">здоровье</option>
+                <option value="2">домашний уют</option>
+                <option value="3">бытовая техника</option>
+            </select>
+            <span></span>
+        </label>
+        <br>
+        <label for="payment">Размещение: 
+            <input type="radio" name="payment" value="1" class="radio">
+            <label for="1">бесплатное</label>
+            <input type="radio" name="payment" value="2" class="radio">
+            <label for="1">платное</label>
+            <input type="radio" name="payment" value="3" class="radio">
+            <label for="1">VIP</label>
+        </label>
+        <span></span>
+        <br>
+        <label for="votes">Разрешить отзывы:
+            <input type="checkbox" name="votes" id="votes" class="check">
+            <span></span>
+        </label>
+        <br>
+        <label for="description">Описание сайта: 
+            <textarea name="description" id="description" cols="30" rows="10" class="text"></textarea>
+            <span></span>
+        </label>
+        <br>
+        <label for="date">Дата рождения 
+            <input type="date" class="text">
+            <span></span>
+        </label>
+        <br>
+        <label for="submit"> 
+            <input type="submit" value="Опубликовать" class="subm">
+            <span></span>
+        </label>
+        <br>
+    </form>
+    <script src="script.js"></script>
+</body>
+
+</html>
