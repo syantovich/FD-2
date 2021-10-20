@@ -1,6 +1,5 @@
 "use strict";
 let allImg = document.querySelectorAll("img");
-console.log(allImg);
 var z = 1;
 allImg.forEach((e, i) => {
     function mousD(){
@@ -8,9 +7,6 @@ allImg.forEach((e, i) => {
         var x=0;
         var y=0;
             event.preventDefault();
-            if (e.style.position == "absolute") {
-                return;
-            }
             let arrlefttop = [];
             if (arrlefttop.length == 0) {
                 allImg.forEach((newE, newi) => {
@@ -18,8 +14,6 @@ allImg.forEach((e, i) => {
                     arrlefttop[newi].top = newE.offsetTop + "px";
                     arrlefttop[newi].left = newE.offsetLeft + "px";
                 });
-    
-    
             }
             allImg.forEach((newE, newI) => {
                 newE.style.position = "absolute";
@@ -38,7 +32,8 @@ allImg.forEach((e, i) => {
                 e.style.top = (pageY-y)+"px";
             }
             e.addEventListener('mousemove', moveAt);
-            e.addEventListener("mouseup",()=>{e.removeEventListener('mousemove', moveAt);});
+            e.addEventListener("mouseup",()=>{ e.removeEventListener('mousemove', moveAt);});
     }
     e.addEventListener("mousedown", mousD);
+
 });
