@@ -1,28 +1,25 @@
 "use strict";
 let allImg = document.querySelectorAll("img");
 var z = 1;
+let pos=[];
+setTimeout(()=>{    for(let i=allImg.length-1;i>-1;i--){
+    pos[i]={};
+    console.log(allImg[i].offsetTop);
+    pos[i].left=allImg[i].offsetLeft+"px";
+    pos[i].top=allImg[i].offsetTop+"px";
+}
+allImg.forEach((e,i)=>{
+    e.style.position="absolute";
+    e.style.left=pos[i].left;
+    e.style.top=pos[i].top;
+});},0);
 allImg.forEach((e) => {
-    let arrlefttop = [];
-    allImg.forEach((newE, newi) => {
-                    arrlefttop[newi] = {};
-                    arrlefttop[newi].top = newE.offsetTop + "px";
-                    arrlefttop[newi].left = newE.offsetLeft + "px";
-                });
-                allImg.forEach((newE, newI) => {
-                newE.style.position = "absolute";
-                newE.style.left = arrlefttop[newI].left;
-                newE.style.top = arrlefttop[newI].top;
-            });
     function mousD(){
         let event=window.event;
         var x=0;
         var y=0;
+
             event.preventDefault();
-            
-
-                
-
-
             e.style.zIndex=z;
             z++;
             x =event.pageX - e.offsetLeft;
@@ -41,3 +38,4 @@ allImg.forEach((e) => {
     e.addEventListener("mousedown", mousD);
 
 });
+
