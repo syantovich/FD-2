@@ -122,6 +122,13 @@ while(str.indexOf("(")!=-1){
 
   }
   endV=parseFloat(endV.toPrecision(15));
+ if (endV==(Infinity)||endV==(-Infinity)){
+   endV="Деление на ноль не возможно";
+ }else{
+    if(isNaN(endV)){
+  endV="Ошибка, присутствует неопределенность!";
+ }
+ }
 
   return endV;
 
@@ -131,6 +138,6 @@ while(str.indexOf("(")!=-1){
 
 
 }
-console.log(calc("0.11 + 0.7"));
+console.log(calc("((0*(42-19+(8-7*(2-1))))/0)-5"));
 console.log(79*(42-19+(8-7*(2-1))));
 //calc("2-(3+(8*4+4/2))*(4-8)");
