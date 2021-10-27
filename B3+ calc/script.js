@@ -54,6 +54,10 @@ function calc(str) {
     }
     if(str[i]=="-"){
       str.splice(i, 0, "!");
+      if(str[i+2]=="("){
+        str.splice(i + 2, 0, "!");
+        i++;
+      }
       i++;
     }
     if(str[i]=="+"){
@@ -62,12 +66,12 @@ function calc(str) {
     }
   }
   str = str.join("").split("!");
-  if (str[0] == "") {
-    str.shift();
-  }
-  if (str[str.length - 1] == "") {
-    str.pop();
-  }
+ for(let i=0;i<str.length;i++){
+   if(str[i]==""){
+    str.splice(i,1);
+    i--;
+   }
+ }
 while(str.indexOf("(")!=-1){
   open = str.indexOf("(");
   close = str.length;
@@ -85,10 +89,11 @@ while(str.indexOf("(")!=-1){
 
     }
     let nextString = "";
-    nextString = str.slice(open + 1, close).join('');
+    nextString = str.slice(open +1, close).join('');
     let end = calc(nextString);
     if (open!=0){open--;}
-    str.splice(open,close-open+2,end);
+    str.splice(open+1,close-open+2,end);
+    if(str[open]=="-"){str[open+1]*=-1;str.splice(open,1);}else{if(str[open]=="+"){str.splice(open,1);}}
 
   } else {
     open = 0;
@@ -117,7 +122,6 @@ while(str.indexOf("(")!=-1){
   endV=0;
   for(let i=0;i<str.length;i++){
     let el=parseFloat(str[i]);
-    if(el==NaN){continue;}
      endV = endV + el;
 
   }
@@ -138,6 +142,6 @@ while(str.indexOf("(")!=-1){
 
 
 }
-console.log(calc("((0*(42-19+(8-7*(2-1))))/0)-5"));
-console.log(79*(42-19+(8-7*(2-1))));
+console.log(calc("79-(42-19+(8-7*(2-1)))"));
+console.log(79-(42-19+(8-7*(2-1))));
 //calc("2-(3+(8*4+4/2))*(4-8)");
