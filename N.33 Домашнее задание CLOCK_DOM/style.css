@@ -1,0 +1,19 @@
+.clock{
+    border-radius: 100%;
+    background-color: #fccb66;
+    position: relative;
+}
+.s{
+    border-radius: 100%;
+    background-color: #46b483;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.arrow{
+    position: absolute;
+    width: 0px;
+    border-radius: 20px;
+    transform-origin: center bottom;
+}
