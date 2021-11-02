@@ -78,7 +78,11 @@ sub.addEventListener("click",(e)=>{
     timeDiv.style.color="red"; 
     clock.append(timeDiv);
     timenext();
-
+    if(!int){
+        clearInterval(int);
+        int=0;}
+       let setTime=setInterval(timenext,1000);
+       int=setTime;
     
     function timenext(){
        let timeNow=new Date();
