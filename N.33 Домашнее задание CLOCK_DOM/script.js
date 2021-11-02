@@ -3,7 +3,6 @@
 let sub=document.querySelector("#submit");
 var diam=0,
     hours=12;
-let int=0;
 sub.addEventListener("click",(e)=>{
     let     time=new Date(),
     secondsDeg = 6 * time.getSeconds() - 6,//определяем по времени где должна быть стрелка секунд
@@ -78,11 +77,7 @@ sub.addEventListener("click",(e)=>{
     timeDiv.style.color="red"; 
     clock.append(timeDiv);
     timenext();
-    if(!int){
-        clearInterval(int);
-        int=0;}
        let setTime=setInterval(timenext,1000);
-       int=setTime;
     
     function timenext(){
        let timeNow=new Date();
