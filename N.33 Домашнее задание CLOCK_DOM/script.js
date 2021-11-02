@@ -44,9 +44,9 @@ sub.addEventListener("click",(e)=>{
         m=r-h/2,
         s=r;//высоты стрелок
 
-    let hW="5px solid black",
-        mW="3px solid black",
-        sW="1px solid black";//Рамка каждой стрелки
+    let hW=`${y0*0.01}px solid black`,
+        mW=`${y0*0.03}px solid black`,
+        sW=`${y0*0.05}px solid black`;//Рамка каждой стрелки
     
     arrowHours.classList.add("arrow");
     arrowMinutes.classList.add("arrow");
