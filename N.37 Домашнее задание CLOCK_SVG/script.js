@@ -1,6 +1,5 @@
 "use strict";
 let sub=document.querySelector("#submit");
-let int=0;
 sub.addEventListener("click",()=>{
     var d=+document.querySelector("#d").value;
     d=(d<300)?300:d;
@@ -117,9 +116,5 @@ sub.addEventListener("click",()=>{
     textHours.textContent=t;
 
     }
-    if(!int){
-        clearInterval(int);
-        int=0;}
        let setTime=setInterval(editTime,1000);
-       int=setTime;
 });
