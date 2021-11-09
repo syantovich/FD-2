@@ -205,10 +205,10 @@ document.addEventListener("keyup",unshift);
 function shift(EO) {
     EO = EO || window.event;
     EO.preventDefault();
-    if (EO.keyCode === 83 ) {
+    if (EO.keyCode === 17 ) {
         green.speedY=speed;
     }
-    if (EO.keyCode === 87 ) {
+    if (EO.keyCode === 16 ) {
         green.speedY=-speed;
     }
     if (EO.keyCode === 40 ) {
@@ -221,10 +221,10 @@ function shift(EO) {
 function unshift(EO){
     EO = EO || window.event;
     EO.preventDefault();
-    if (EO.keyCode === 83 ) {
+    if (EO.keyCode === 17 ) {
         green.speedY=0;
     }
-    if (EO.keyCode === 87 ) {
+    if (EO.keyCode === 16 ) {
         green.speedY=-0;
     }
     if (EO.keyCode === 40 ) {
