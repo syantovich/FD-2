@@ -25,13 +25,13 @@ let player = {
 
 
 let ballD = areaH.height / 20;
-
+let speed=0;
 
 var green = {
     posX: 0,
     posY: areaH.height / 2 - player.height / 2,
     speedX: 0,
-    speedY: 30,
+    speedY: 0,
     width: ballD,
     height: ballD,
 
@@ -47,7 +47,7 @@ var blue = {
     posX: areaH.width - player.width,
     posY: areaH.height / 2 - player.height / 2,
     speedX: 0,
-    speedY: 30,
+    speedY: 0,
     width: ballD,
     height: ballD,
 
@@ -120,14 +120,28 @@ function start() {
     }
     createEl();
     interval = requestAnimationFrame(tick);
-
+    
+    speed=Math.sqrt(ballH.speedY*ballH.speedY+ballH.speedX*ballH.speedX);
 }
 
 function tick() {
+   
     let ball = document.querySelector(".ball");
     let greenPlayer = document.querySelector(".greenPlayer");
     let bluePlayer = document.querySelector(".bluePlayer");
     ballH.posX += ballH.speedX;
+
+    if (blue.posY + player.height + blue.speedY > areaH.height) {
+        blue.posY = areaH.height - player.height;}else{if(blue.posY+blue.speedY<0){blue.posY=0;}else
+            {blue.posY+=blue.speedY;} 
+        }
+    blue.update();
+    if (green.posY + player.height + green.speedY > areaH.height) {
+        green.posY = areaH.height - player.height;}else{if(green.posY+green.speedY<0){green.posY=0;}else
+            {green.posY+=green.speedY;} 
+        }
+    green.update();
+
     // вылетел ли мяч правее стены?
     if (ballH.posX + ballH.width > areaH.width - player.width && ball.offsetTop + ball.offsetHeight / 2 > blue.posY && ball.offsetTop + ball.offsetHeight / 2 < blue.posY + bluePlayer.offsetHeight) {
         ballH.speedX = -ballH.speedX;
@@ -177,8 +191,7 @@ function tick() {
     }
     interval = requestAnimationFrame(tick);
 
-    green.update();
-    blue.update();
+
     ballH.update();
 
 
@@ -186,48 +199,38 @@ function tick() {
 }
 
 
-let greenPlayer = document.querySelector(".greenPlayer"),
-    bluePlayer = document.querySelector(".bluePlayer");
 document.addEventListener("keydown", shift);
+document.addEventListener("keyup",unshift);
 
 function shift(EO) {
     EO = EO || window.event;
-    if (EO.keyCode === 83 && green.posY + player.height < areaH.height) {
-        if (green.posY + player.height + green.speedY > areaH.height) {
-            green.posY = areaH.height - player.height;
-            green.update()
-        } else {
-            green.posY += green.speedY;
-            green.update();
-        }
+    EO.preventDefault();
+    if (EO.keyCode === 83 ) {
+        green.speedY=speed;
     }
-    if (EO.keyCode === 87 && green.posY > 0) {
-        if (green.posY - green.speedY < 0) {
-            green.posY = 0;
-            green.update();
-        } else {
-            green.posY -= green.speedY;
-            green.update();
-        }
+    if (EO.keyCode === 87 ) {
+        green.speedY=-speed;
     }
-    if (EO.keyCode === 40 && blue.posY + player.height < areaH.height) {
-        if (blue.posY + player.height + blue.speedY > areaH.height) {
-            blue.posY = areaH.height - player.height;
-            blue.update()
-        } else {
-            blue.posY += blue.speedY;
-            blue.update();
-        }
+    if (EO.keyCode === 40 ) {
+        blue.speedY=speed;
     }
-    if (EO.keyCode === 38 && green.posY > 0) {
-        if (blue.posY - blue.speedY < 0) {
-            blue.posY = 0;
-            blue.update();
-        } else {
-            blue.posY -= blue.speedY;
-            blue.update();
-        }
+    if (EO.keyCode === 38 ) {
+        blue.speedY=-speed;
     }
-
-removeEventListener("keydown",shift);
+}
+function unshift(EO){
+    EO = EO || window.event;
+    EO.preventDefault();
+    if (EO.keyCode === 83 ) {
+        green.speedY=0;
+    }
+    if (EO.keyCode === 87 ) {
+        green.speedY=-0;
+    }
+    if (EO.keyCode === 40 ) {
+        blue.speedY=0;
+    }
+    if (EO.keyCode === 38 ) {
+        blue.speedY=-0;
+    }
 }
