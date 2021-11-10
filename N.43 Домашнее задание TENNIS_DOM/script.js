@@ -64,6 +64,7 @@ var ballH = {
     posY: areaH.height / 2 - ballD / 2,
     speedX: 0,
     speedY: 0,
+    accel:1.1,
     width: ballD,
     height: ballD,
 
@@ -106,20 +107,33 @@ ballH.update();
 let interval = 0;
 
 function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
+    do{
+       min = Math.ceil(min);
+        max = Math.floor(max); 
+    }while(min==0 && max==0);
+    
+    
     return Math.floor(Math.random() * (max - min)) + min; //Максимум не включается, минимум включается
 }
 requestAnimationFrame(tick);
-function start() {
-    setTimeout(()=>{ballH.posX=areaH.width / 2 - ballD / 2;
-    ballH.posY=areaH.height / 2 - ballD / 2;
-    ballH.speedX = getRandomInt(-10, 10);
-    ballH.speedY = getRandomInt(-10, 10);
+let tim=0;
+let sub=document.querySelector("input");
+sub.addEventListener("click",()=>{
+    if(tim){
+        clearTimeout(tim);
+        tim=0;
+    }
+    tim=setTimeout(start,1000);
+});
 
-    interval = requestAnimationFrame(tick);
-    
-    speed=Math.sqrt(ballH.speedY*ballH.speedY+ballH.speedX*ballH.speedX);},1500);
+
+function start() {
+ballH.posX=areaH.width / 2 - ballD / 2;
+    ballH.posY=areaH.height / 2 - ballD / 2;
+    ballH.speedX = getRandomInt(-5, 5);
+    ballH.speedY = getRandomInt(-5, 5);    
+    tick();
+    speed=Math.sqrt(ballH.speedY*ballH.speedY+ballH.speedX*ballH.speedX);
     
 }
 
@@ -144,12 +158,13 @@ function tick() {
     // вылетел ли мяч правее стены?
     if (ballH.posX + ballH.width > areaH.width - player.width && ball.offsetTop + ball.offsetHeight / 2 > blue.posY && ball.offsetTop + ball.offsetHeight / 2 < blue.posY + bluePlayer.offsetHeight) {
         ballH.speedX = -ballH.speedX;
+        ballH.speedX*=ballH.accel;
+        ballH.speedY*=ballH.accel;
         ballH.posX = areaH.width - ballH.width - player.width;
     } else {
         if (ballH.posX + ballH.width > areaH.width) {
-            cancelAnimationFrame(interval);
-            interval = 0;
             ballH.posX = areaH.width - ballH.width;
+            ballH.speedX=ballH.speedY=0;
             ballH.update();
             scoreG++;
             score.innerText = `${scoreG}:${scoreB}`;
@@ -160,12 +175,13 @@ function tick() {
 
     if (ballH.posX < player.width && ball.offsetTop + ball.offsetHeight / 2 > green.posY && ball.offsetTop + ball.offsetHeight / 2 < green.posY + greenPlayer.offsetHeight) {
         ballH.speedX = -ballH.speedX;
+        ballH.speedX*=ballH.accel;
+        ballH.speedY*=ballH.accel;
         ballH.posX = player.width;
     } else {
         if (ballH.posX < 0) {
-            cancelAnimationFrame(interval);
-            interval = 0;
             ballH.posX = 0;
+            ballH.speedX=ballH.speedY=0;
             ballH.update();
             scoreB++;
             score.innerText = `${scoreG}:${scoreB}`;
