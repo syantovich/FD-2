@@ -62,8 +62,8 @@ var blue = {
 var ballH = {
     posX: areaH.width / 2 - ballD / 2,
     posY: areaH.height / 2 - ballD / 2,
-    speedX: 2,
-    speedY: 1,
+    speedX: 0,
+    speedY: 0,
     width: ballD,
     height: ballD,
 
@@ -110,18 +110,17 @@ function getRandomInt(min, max) {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min)) + min; //Максимум не включается, минимум включается
 }
-
+requestAnimationFrame(tick);
 function start() {
+    setTimeout(()=>{ballH.posX=areaH.width / 2 - ballD / 2;
+    ballH.posY=areaH.height / 2 - ballD / 2;
     ballH.speedX = getRandomInt(-10, 10);
     ballH.speedY = getRandomInt(-10, 10);
-    if (interval) {
-        cancelAnimationFrame(interval);
-        interval = 0;
-    }
-    createEl();
+
     interval = requestAnimationFrame(tick);
     
-    speed=Math.sqrt(ballH.speedY*ballH.speedY+ballH.speedX*ballH.speedX);
+    speed=Math.sqrt(ballH.speedY*ballH.speedY+ballH.speedX*ballH.speedX);},1500);
+    
 }
 
 function tick() {
@@ -185,11 +184,8 @@ function tick() {
         ballH.speedY = -ballH.speedY;
         ballH.posY = 0;
     }
-    if (interval) {
-        cancelAnimationFrame(interval);
-        interval = 0;
-    }
-    interval = requestAnimationFrame(tick);
+
+    requestAnimationFrame(tick);
 
 
     ballH.update();
