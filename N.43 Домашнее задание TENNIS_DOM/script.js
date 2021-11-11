@@ -118,13 +118,7 @@ function getRandomInt(min, max) {
 requestAnimationFrame(tick);
 let tim=0;
 let sub=document.querySelector("input");
-sub.addEventListener("click",()=>{
-    if(tim){
-        clearTimeout(tim);
-        tim=0;
-    }
-    tim=setTimeout(start,1000);
-});
+sub.addEventListener("click",start);
 
 
 function start() {
@@ -132,7 +126,6 @@ ballH.posX=areaH.width / 2 - ballD / 2;
     ballH.posY=areaH.height / 2 - ballD / 2;
     ballH.speedX = getRandomInt(-5, 5);
     ballH.speedY = getRandomInt(-5, 5);    
-    tick();
     speed=Math.sqrt(ballH.speedY*ballH.speedY+ballH.speedX*ballH.speedX);
     
 }
@@ -168,7 +161,6 @@ function tick() {
             ballH.update();
             scoreG++;
             score.innerText = `${scoreG}:${scoreB}`;
-            return;
         }
     }
     // вылетел ли мяч левее стены?
@@ -185,7 +177,6 @@ function tick() {
             ballH.update();
             scoreB++;
             score.innerText = `${scoreG}:${scoreB}`;
-            return;
         }
     }
 
@@ -203,7 +194,7 @@ function tick() {
 
     requestAnimationFrame(tick);
 
-
+    
     ballH.update();
 
 
