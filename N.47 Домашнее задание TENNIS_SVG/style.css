@@ -1,0 +1,9 @@
+body{
+    position: relative;
+    display: flex;
+}
+#area{
+    position: absolute;
+    top: 40px;
+    left: 0px;
+}
