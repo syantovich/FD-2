@@ -1,0 +1,9 @@
+body{
+    position: relative;
+    display: flex;
+}
+#CAN{
+    position: absolute;
+    top: 40px;
+    left: 0px;
+}
