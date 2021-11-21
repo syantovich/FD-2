@@ -17,16 +17,18 @@ newIMG.style.height = firstIMG.getBoundingClientRect().height + "px";
 firstIMG.style.visibility = "hidden";
 let over;
 let img = {
-    posXC: newIMG.offsetLeft + newIMG.offsetWidth / 2,
-    posYC: newIMG.offsetTop + newIMG.offsetHeight / 2,
+    posX: newIMG.offsetLeft ,
+    posY: newIMG.offsetTop ,
+    X:newIMG.offsetLeft,
+    Y:newIMG.offsetTop,
     width: newIMG.offsetWidth,
     height: newIMG.offsetHeight,
     w: newIMG.offsetWidth,
     h: newIMG.offsetHeight,
 
     update: function () {
-        newIMG.style.left = this.posXC - this.width/2 + "px";
-        newIMG.style.top = this.posYC - this.height/2 + "px";
+        newIMG.style.left = this.posX + "px";
+        newIMG.style.top = this.posY + "px";
         newIMG.style.width = this.width + "px";
         newIMG.style.height = this.height + "px";
     },
@@ -86,7 +88,7 @@ function move(EO) {
 
 
     }
-
+console.log(sit);
 }
 
 newIMG.addEventListener("mousedown", resize);
@@ -108,24 +110,27 @@ newIMG.addEventListener("mousedown", resize);
             let z2=Math.sqrt(Math.pow(img.w,2)+Math.pow(img.h,2));
             
             let k=Math.sign(x1-x2)*z1/z2;
-            console.log(z1+" "+z2+" "+k);
             if (sit == 5) {
-                if((x2 - x1)>img.w){img.width=0;img.update();}else{img.width = img.w - (x2 - x1);}
+                if((x2 - x1)>img.w){img.width=0;img.update();}else{img.width = img.w - (x2 - x1);
+                img.posX=img.X-(x1 - x2);}
                 img.update();
             }
             if(sit== 6){
-                if((y2 - y1)>img.h){img.height=0;img.update();}else{img.height = img.h - (y2 - y1);}
+                if((y2 - y1)>img.h){img.height=0;img.update();}else{img.height = img.h - (y2 - y1);
+                img.posY=img.Y-(y1-y2);}
                 img.update();
             }
             if (sit == 7) {
-                if((y1 - y2)>img.h){img.height=0;img.update();}else{img.height = img.h - (y1 - y2);}
+                if((y1 - y2)>img.h){img.height=0;img.update();}else{img.height = img.h - (y1 - y2);
+                    img.posY=img.Y;}
                 img.update();
             }
             if (sit == 8) {
-                if((x1 - x2)>img.w){img.width=0;img.update();}else{img.width = img.w - (x1 - x2);}
+                if((x1 - x2)>img.w){img.width=0;img.update();}else{img.width = img.w - (x1 - x2);
+                img.posX=img.X;}
                 img.update();
             }
-            if( sit ==1||sit==4){
+            if( sit ==1){
                 if(k<-1){
                     img.width=0;
                     img.height=0;
@@ -133,10 +138,36 @@ newIMG.addEventListener("mousedown", resize);
                 }else{
                     img.width = img.w + img.w*k;
                     img.height= img.h + img.h*k;
+                    img.posX=img.X+img.w-img.width;
+                    img.posY=img.Y+img.h-img.height;
                     img.update();
                 }
             }
-            if( sit ==2||sit ==3){
+            if( sit ==3){
+                if(k>1){
+                    img.width=0;
+                    img.height=0;
+                    img.update();
+                }else{
+                    img.width = img.w - img.w*k;
+                    img.height= img.h - img.h*k;
+                    img.posY=img.Y+img.h-img.height;
+                    img.update();
+                }
+            }
+            if(sit==4){
+                if(k<-1){
+                    img.width=0;
+                    img.height=0;
+                    img.update();
+                }else{
+                    img.width = img.w + img.w*k;
+                    img.height= img.h + img.h*k;
+                    img.posX=img.X+img.w-img.width;
+                    img.update();
+                }
+            }
+            if(sit==2){
                 if(k>1){
                     img.width=0;
                     img.height=0;
@@ -147,13 +178,20 @@ newIMG.addEventListener("mousedown", resize);
                     img.update();
                 }
             }
+            if (sit==0){img.posX=img.X+(x2-x1);
+            img.posY=img.Y+(y2-y1);
+        img.update();}
+            console.log(img);
+            
             
     
         }
         document.addEventListener("mouseup", function someF(e) {
             img.w=img.width;
             img.h=img.height;
-            
+            console.log(img);
+            img.X=img.posX;
+            img.Y=img.posY;
             newIMG.addEventListener("mousemove", move);
             document.removeEventListener("mousemove", r);
             document.removeEventListener("mouseup", someF);
