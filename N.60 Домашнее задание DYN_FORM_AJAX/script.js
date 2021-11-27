@@ -95,5 +95,5 @@ if(i<urlArr.length){
 
 }
 }
-let urlArr=["formDef1.json","formDef2.json"];
+let urlArr=["https://fe.it-academy.by/Examples/dyn_form_ajax/formDef1.json","https://fe.it-academy.by/Examples/dyn_form_ajax/formDef2.json"];
 dyn_form_AjAX(urlArr,0);
